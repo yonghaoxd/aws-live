@@ -44,7 +44,7 @@ def AddEmp():
     insert_sql = "INSERT INTO student VALUES (%s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
-    if emp_image_file.filename == "":
+    if Stud_img.filename == "":
         return "Please select a file"
 
     try:
