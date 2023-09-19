@@ -33,14 +33,15 @@ def about():
 
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
-    emp_id = request.form['emp_id']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    pri_skill = request.form['pri_skill']
-    location = request.form['location']
-    emp_image_file = request.files['emp_image_file']
+    Stud_id = request.form['Stud_id']
+    Stud_name = request.form['Stud_name']
+    Stud_phoneNo = request.form['Stud_phoneNo']
+    Stud_email = request.form['Stud_email']
+    Stud_cgpa = request.form['Stud_cgpa']
+    Stud_programme = request.form['Stud_programme']
+    Stud_img = request.files['Stud_img']
 
-    insert_sql = "INSERT INTO student VALUES (%s, %s, %s, %s, %s)"
+    insert_sql = "INSERT INTO student VALUES (%s, %s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
 
     if emp_image_file.filename == "":
@@ -48,16 +49,16 @@ def AddEmp():
 
     try:
 
-        cursor.execute(insert_sql, (emp_id, first_name, last_name, pri_skill, location))
+        cursor.execute(insert_sql, (Stud_id, Stud_name, Stud_phoneNo, Stud_email, Stud_cgpa, Stud_programme))
         db_conn.commit()
-        emp_name = "" + first_name + " " + last_name
+
         # Uplaod image file in S3 #
-        emp_image_file_name_in_s3 = "emp-id-" + str(emp_id) + "_image_file"
+        Stud_img_name_in_s3 = "emp-id-" + str(Stud_id) + "_image_file"
         s3 = boto3.resource('s3')
 
         try:
             print("Data inserted in MySQL RDS... uploading image to S3...")
-            s3.Bucket(custombucket).put_object(Key=emp_image_file_name_in_s3, Body=emp_image_file)
+            s3.Bucket(custombucket).put_object(Key=Stud_img_name_in_s3, Body=Stud_img)
             bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
             s3_location = (bucket_location['LocationConstraint'])
 
@@ -69,7 +70,7 @@ def AddEmp():
             object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
                 s3_location,
                 custombucket,
-                emp_image_file_name_in_s3)
+                Stud_img_name_in_s3)
 
         except Exception as e:
             return str(e)
@@ -78,7 +79,7 @@ def AddEmp():
         cursor.close()
 
     print("all modification done...")
-    return render_template('AddEmpOutput.html', name=emp_name)
+    return render_template('AddEmpOutput.html', name=Stud_id)
 
 
 if __name__ == '__main__':
