@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Employee Information</title>
+	<title>Add Student Information</title>
 </head>
 <center>
 	<font color="black" size="4" style="font-family: avenir">
@@ -12,24 +12,27 @@
 
 			<form action="/addemp" autocomplete="on" method = "POST" enctype="multipart/form-data">
 
-				<button type="submit" formaction="/getemp" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GET EMPLOYEE INFORMATION</button><br><br>
+				<button type="submit" formaction="/getemp" style="background: grey; height: 45px; width: 200px; color:white; font:oblique;">GET STUDENT INFORMATION</button><br><br>
 
-		  		Employee ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="emp_id" autofocus size="40"><br><br>
+		  		Student ID:<br> <input style="height:25px;font-size:14pt; color:grey;" type="number" name="Stud_id" autofocus size="40"><br><br>
 
-		  		First Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="first_name" ><br><br>
+		  		Student Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="Stud_name" ><br><br>
 
-		  		Last Name:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="last_name"><br><br>
+		  		Student Phone Number:<br> <input style="height: 25px; font-size: 14pt; color: grey;" type="tel" name="Stud_phoneNo" pattern="[0-9]+" title="Please enter a valid phone number (numbers only)" required><br><br>
 
-		  		Primary Skills:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="pri_skill"><br><br>
+		  		Student Email:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="Stud_email"><br><br>
 
-		  		Location:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="location"><br><br>
+		  		Student Programme:<br> <input style="height:25px;font-size:14pt;color:grey;" type="text" name="stud_Programme"><br><br>
 
-		  		Image: <input type=file name="emp_image_file" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+				CGPA:<br> <input type="number" id="cgpa" name="Stud_cgpa" min="0" max="4" step="0.01" style="height: 25px; font-size: 14pt; color: grey;" required><br><br>
 
+		  		Image: <input type=file name="Stud_img" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+
+				
 		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">UPDATE DATABASE</button>
 
 			</form>
-<a href="/about">About Us</a>
+
 		</body>
 
 	</font>
